@@ -1,6 +1,9 @@
-package dev.java10x.CadastroDeNinjas.model;
+package dev.java10x.CadastroDeNinjas.Ninjas.model;
 
+import dev.java10x.CadastroDeNinjas.Missoes.model.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -19,6 +22,9 @@ public class NinjaModel {
 
     @Column(name = "email")
     private String email;
+
+    @ManyToOne
+    private List<MissoesModel> missoes;
 
     public NinjaModel() {
     }
