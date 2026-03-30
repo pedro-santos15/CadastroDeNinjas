@@ -2,11 +2,15 @@ package dev.java10x.CadastroDeNinjas.Ninjas.model;
 
 import dev.java10x.CadastroDeNinjas.Missoes.model.MissoesModel;
 import jakarta.persistence.*;
-
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "tb_cadastro")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class NinjaModel {
 
     @Id
@@ -20,7 +24,7 @@ public class NinjaModel {
     @Column(name = "idade")
     private int idade;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     //Muitos ninjas, podem ter uma missão
@@ -28,53 +32,6 @@ public class NinjaModel {
     @JoinColumn(name = "missoes_id") // FK / Chave estrangeira
     private MissoesModel missoes;
 
-    public NinjaModel() {
-    }
 
-    public NinjaModel(String nome, int idade, String email) {
-        this.nome = nome;
-        this.idade = idade;
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "Ninja{" +
-                "nome='" + nome + '\'' +
-                ", idade=" + idade +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }
+
