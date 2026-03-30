@@ -23,8 +23,10 @@ public class NinjaModel {
     @Column(name = "email")
     private String email;
 
+    //Muitos ninjas, podem ter uma missão
     @ManyToOne
-    private List<MissoesModel> missoes;
+    @JoinColumn(name = "missoes_id") // FK / Chave estrangeira
+    private MissoesModel missoes;
 
     public NinjaModel() {
     }

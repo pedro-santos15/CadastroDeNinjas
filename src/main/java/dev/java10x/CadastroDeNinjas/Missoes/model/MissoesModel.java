@@ -3,6 +3,8 @@ package dev.java10x.CadastroDeNinjas.Missoes.model;
 import dev.java10x.CadastroDeNinjas.Ninjas.model.NinjaModel;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_missoes")
 public class MissoesModel {
@@ -18,18 +20,19 @@ public class MissoesModel {
     @Column(name = "dificuldade")
     private String dificuldade;
 
-    @OneToMany
-    @JoinColumn(name = "ninja_id")
-    private NinjaModel ninja;
+    //Uma entidade, pode ter vários objetos
+    //Uma missão, pode ter vários ninjas
+    @OneToMany(mappedBy = "missoes")
+    private List<NinjaModel> ninjas;
 
     public MissoesModel() {
     }
 
-    public MissoesModel(Long id, String nome, String dificuldade, NinjaModel ninja) {
+    public MissoesModel(Long id, String nome, String dificuldade, List<NinjaModel> ninjas) {
         this.id = id;
         this.nome = nome;
         this.dificuldade = dificuldade;
-        this.ninja = ninja;
+        this.ninjas = ninjas;
     }
 
     public Long getId() {
@@ -56,12 +59,12 @@ public class MissoesModel {
         this.dificuldade = dificuldade;
     }
 
-    public NinjaModel getNinja() {
-        return ninja;
+    public List<NinjaModel> getNinjas() {
+        return ninjas;
     }
 
-    public void setNinja(NinjaModel ninja) {
-        this.ninja = ninja;
+    public void setNinjas(List<NinjaModel> ninjas) {
+        this.ninjas = ninjas;
     }
 
     @Override
@@ -70,7 +73,7 @@ public class MissoesModel {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", dificuldade='" + dificuldade + '\'' +
-                ", ninja=" + ninja +
+                ", ninjas=" + ninjas +
                 '}';
     }
 }
