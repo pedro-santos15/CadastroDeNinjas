@@ -27,6 +27,9 @@ public class NinjaModel {
     @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
     //Muitos ninjas, podem ter uma missão
     @ManyToOne
     @JoinColumn(name = "missoes_id") // FK / Chave estrangeira
