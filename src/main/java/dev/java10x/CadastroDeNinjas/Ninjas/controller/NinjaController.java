@@ -29,8 +29,8 @@ public class NinjaController {
 
     //findById (GET) (READ)
     @GetMapping("/{id}")
-    public String buscaNinjaPorId(@PathVariable Long id){
-        return "Ninja encontrado neste id: ";
+    public NinjaModel buscaNinjaPorId(@PathVariable Long id){
+        return service.buscaNinjaPorId(id);
     }
     //Mostrar todos os ninjas (GET) (READ)
     @GetMapping("/todos")
