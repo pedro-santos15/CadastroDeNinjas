@@ -28,12 +28,12 @@ public class NinjaController {
         return "Todos os ninjas";
     }
     //Atualizar Ninja (PUT) (UPDATE)
-    @PutMapping("/atualizar")
+    @PutMapping("/alterar")
     public String atualizarNinja(){
         return "Ninja Atualziado";
     }
     //Deletar Ninja (DELETE)
-    @DeleteMapping("/deletarID")
+    @DeleteMapping("/deletar")
     public String deletarNinjaPorId(){
         return "Ninja deletado";
     }
