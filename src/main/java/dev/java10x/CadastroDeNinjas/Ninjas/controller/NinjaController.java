@@ -1,10 +1,20 @@
 package dev.java10x.CadastroDeNinjas.Ninjas.controller;
 
+import dev.java10x.CadastroDeNinjas.Ninjas.model.NinjaModel;
+import dev.java10x.CadastroDeNinjas.Ninjas.service.NinjaService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/ninja")
 public class NinjaController {
+
+    private NinjaService service;
+
+    public NinjaController(NinjaService service) {
+        this.service = service;
+    }
 
     @GetMapping("/boasvindas")
     public String boasVindas(){
@@ -24,9 +34,10 @@ public class NinjaController {
     }
     //Mostrar todos os ninjas (GET) (READ)
     @GetMapping("/todos")
-    public String mostrarTodosOsNinjas(){
-        return "Todos os ninjas";
+    public List<NinjaModel> listarNinjas(){
+        return service.listarNinjas();
     }
+
     //Atualizar Ninja (PUT) (UPDATE)
     @PutMapping("/alterar")
     public String atualizarNinja(){
