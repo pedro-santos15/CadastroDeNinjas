@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class NinjaDTO {
 
     private Long id;
@@ -16,6 +15,7 @@ public class NinjaDTO {
     private int idade;
     private String email;
     private String imgUrl;
-    private MissoesModel missoes;
     private String rank;
+    private MissoesModel missoes;
+
 }

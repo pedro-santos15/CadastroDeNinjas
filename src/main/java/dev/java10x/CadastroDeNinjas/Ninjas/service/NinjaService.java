@@ -15,19 +15,23 @@ public class NinjaService {
     private NinjaRepository repository;
     private NinjaMapper mapper;
 
-
-    public NinjaService(NinjaRepository repository) {
+    public NinjaService(NinjaRepository repository, NinjaMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     //Listar todos os ninjas
 
-    public List<NinjaModel> listarNinjas(){
-        return repository.findAll();
+    public List<NinjaDTO> listarNinjas(){
+        List<NinjaModel> ninjas = repository.findAll();
+        return ninjas.stream()
+                .map(mapper::map)
+                .toList();
     }
 
-    public NinjaModel buscaNinjaPorId(Long id){
-        return repository.findById(id).orElse(null);
+    public NinjaDTO buscaNinjaPorId(Long id){
+        Optional<NinjaModel> ninjaModel = repository.findById(id);
+        return ninjaModel.map(mapper::map).orElse(null);
     }
 
     public NinjaDTO criarNinja(NinjaDTO ninjaDTO){
@@ -41,10 +45,15 @@ public class NinjaService {
         repository.deleteById(id);
     }
 
-    public NinjaModel atualizarNinja(Long id, NinjaModel ninjaModel){
-        if (repository.existsById(id)){
-            ninjaModel.setId(id);
-            return repository.save(ninjaModel);
+    public NinjaDTO atualizarNinja(Long id, NinjaDTO dto){
+        Optional<NinjaModel> ninjaModel = repository.findById(id);
+
+        if (ninjaModel.isPresent()){
+            NinjaModel ninjaAtualizado = mapper.map(dto);
+            ninjaAtualizado.setId(id);
+
+            NinjaModel ninjaSalvo = repository.save(ninjaAtualizado);
+            return mapper.map(ninjaSalvo);
         }
 
         return null;
