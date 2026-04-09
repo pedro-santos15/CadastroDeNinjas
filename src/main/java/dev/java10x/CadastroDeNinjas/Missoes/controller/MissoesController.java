@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Missoes.controller;
 
+import dev.java10x.CadastroDeNinjas.Missoes.dto.MissoesDTO;
 import dev.java10x.CadastroDeNinjas.Missoes.model.MissoesModel;
 import dev.java10x.CadastroDeNinjas.Missoes.service.MissoesService;
 import org.springframework.web.bind.annotation.*;
@@ -17,22 +18,22 @@ public class MissoesController {
     }
 
     @GetMapping("/listar")
-    public List<MissoesModel> listarMissoes() {
+    public List<MissoesDTO> listarMissoes() {
         return service.listarMissoes();
     }
 
     @GetMapping("/{id}")
-    public MissoesModel buscarMissaoPorId(@PathVariable Long id) {
+    public MissoesDTO buscarMissaoPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
     }
 
     @PostMapping("/criar")
-    public MissoesModel criarMissao(@RequestBody MissoesModel missao) {
+    public MissoesDTO criarMissao(@RequestBody MissoesDTO missao) {
         return service.criarMissao(missao);
     }
 
     @PutMapping("/atualizar/{id}")
-    public MissoesModel atualizarMissao(@PathVariable Long id, @RequestBody MissoesModel missao) {
+    public MissoesDTO atualizarMissao(@PathVariable Long id, @RequestBody MissoesDTO missao) {
         return service.atualizarMissao(id, missao);
     }
 
