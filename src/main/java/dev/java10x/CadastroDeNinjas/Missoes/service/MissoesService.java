@@ -12,8 +12,8 @@ import java.util.Optional;
 @Service
 public class MissoesService {
 
-    private MissoesRepository repository;
-    private MissoesMapper mapper;
+    private final MissoesRepository repository;
+    private final MissoesMapper mapper;
 
     public MissoesService(MissoesRepository repository, MissoesMapper mapper) {
         this.repository = repository;

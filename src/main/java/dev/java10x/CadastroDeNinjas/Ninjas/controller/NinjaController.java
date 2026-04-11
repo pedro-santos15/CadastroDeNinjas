@@ -1,21 +1,18 @@
 package dev.java10x.CadastroDeNinjas.Ninjas.controller;
 
 import dev.java10x.CadastroDeNinjas.Ninjas.dto.NinjaDTO;
-import dev.java10x.CadastroDeNinjas.Ninjas.model.NinjaModel;
 import dev.java10x.CadastroDeNinjas.Ninjas.service.NinjaService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/ninjas")
 public class NinjaController {
 
-    private NinjaService service;
+    private final NinjaService service;
 
     public NinjaController(NinjaService service) {
         this.service = service;

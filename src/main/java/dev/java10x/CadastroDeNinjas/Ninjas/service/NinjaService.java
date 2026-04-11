@@ -12,8 +12,8 @@ import java.util.Optional;
 @Service
 public class NinjaService {
 
-    private NinjaRepository repository;
-    private NinjaMapper mapper;
+    private final NinjaRepository repository;
+    private final NinjaMapper mapper;
 
     public NinjaService(NinjaRepository repository, NinjaMapper mapper) {
         this.repository = repository;
